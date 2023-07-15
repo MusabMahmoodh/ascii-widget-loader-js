@@ -1,8 +1,10 @@
 (() => {
   const script = document.currentScript;
 
-  const ChatIcon = "https://img.icons8.com/ios-filled/50/000000/chat.png";
-  const CloseIcon = "https://img.icons8.com/ios-filled/50/000000/close-window.png";
+  const ChatIcon =
+    "C:/Users/musab/OneDrive/Desktop/projects/ascii/neura-chat/demo/example-neura-widget-loader/chat-float.svg";
+  const CloseIcon =
+    "C:/Users/musab/OneDrive/Desktop/projects/ascii/neura-chat/demo/example-neura-widget-loader/exit-float.svg";
   const loadWidget = () => {
     const widget = document.createElement("div");
     widget.id = "widget";
@@ -32,6 +34,7 @@
     iframeStyle.margin = 0;
     iframeStyle.padding = 0;
     iframeStyle.backgroundColor = "none";
+    iframeStyle.display = "none";
     // iframeStyle.borderRadius = "1px";
 
     widget.appendChild(iframe);
@@ -44,16 +47,21 @@
     iframe.src = widgetUrl;
 
     document.body.appendChild(widget);
+    widget.style.display = "none";
   };
 
   const showWidget = () => {
     const widget = document.getElementById("widget");
+    const iframe = document.getElementById("widget-iframe");
     widget.style.display = "block";
+    iframe.style.display = "block";
   };
 
   const hideWidget = () => {
     const widget = document.getElementById("widget");
+    const iframe = document.getElementById("widget-iframe");
     widget.style.display = "none";
+    iframe.style.display = "none";
   };
   const isWidgetVisible = () => {
     const widget = document.getElementById("widget");
@@ -92,9 +100,9 @@
         position: fixed;
         bottom: 15px;
         right: 15px;
-        width: 60px;
-        height: 60px;
-        border-radius: 100%;
+        width: 159.5778350830078px;
+        height: 76.93931579589844px;
+        border-radius: 66.9656982421875px;
         background-color: #ffffff;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.18) !important;
         z-index: 2147483640;
@@ -105,7 +113,7 @@
       }
     
       .widget-controller-btn img {
-        width: 40px;
+        width: 60px;
       }
     `;
 
