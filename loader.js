@@ -5,41 +5,51 @@
     "C:/Users/musab/OneDrive/Desktop/projects/ascii/neura-chat/demo/example-neura-widget-loader/chat-float.svg";
   const CloseIcon =
     "C:/Users/musab/OneDrive/Desktop/projects/ascii/neura-chat/demo/example-neura-widget-loader/exit-float.svg";
+
+  let widget;
+  let iframe;
+  let button;
+
   const loadWidget = () => {
-    const widget = document.createElement("div");
-    widget.id = "widget";
+    widget = document.createElement("div");
+    widget.id = "neura-chat-widget";
+    widget.style.display = "none";
+    widget.style.boxSizing = "border-box";
+    widget.style.width = "400px";
+    widget.style.maxWidth = "100%";
+    widget.style.height = "calc(100% - 145px)";
+    widget.style.maxHeight = "100%";
+    widget.style.position = "fixed";
+    widget.style.bottom = "70px";
+    widget.style.right = "15px";
+    widget.style.padding = 0;
+    widget.style.zIndex = 9999;
+    widget.style.border = "1px solid #e6e6e6";
+    widget.style.borderRadius = "10px";
+    widget.style.boxShadow = "0 5px 40px rgba(0,0,0,.16)!important";
 
-    const widgetStyle = widget.style;
-    widgetStyle.display = "none";
-    widgetStyle.boxSizing = "border-box";
-    widgetStyle.width = "300px";
-    widgetStyle.height = "500px";
-    widgetStyle.position = "fixed";
-    widgetStyle.bottom = "90px";
-    widgetStyle.right = "15px";
-    widgetStyle.padding = 0;
-
-    const iframe = document.createElement("iframe");
+    iframe = document.createElement("iframe");
     iframe.id = "widget-iframe";
-    iframe.allow = "microphone"; // Allowing microphone access for the iframe
-
-    const iframeStyle = iframe.style;
-    iframeStyle.boxSizing = "border-box";
-    iframeStyle.position = "absolute";
-    iframeStyle.right = 0;
-    iframeStyle.top = 0;
-    iframeStyle.width = "100%";
-    iframeStyle.height = "100%";
-    iframeStyle.border = 0;
-    iframeStyle.margin = 0;
-    iframeStyle.padding = 0;
-    iframeStyle.backgroundColor = "none";
-    iframeStyle.display = "none";
-    // iframeStyle.borderRadius = "1px";
+    iframe.allow = "microphone *"; // Allowing microphone access for the iframe
+    iframe.style.boxSizing = "border-box";
+    iframe.style.position = "absolute";
+    iframe.style.right = 0;
+    iframe.style.top = 0;
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    iframe.style.border = 0;
+    iframe.style.margin = 0;
+    iframe.style.padding = 0;
+    iframe.style.backgroundColor = "none";
+    iframe.style.display = "none";
+    iframe.style.borderRadius = "10px";
+    iframe.style.border = "1px solid #e6e6e6";
 
     widget.appendChild(iframe);
 
-    iframe.addEventListener("load", () => (widgetStyle.display = "block"));
+    iframe.addEventListener("load", () => {
+      button.style.display = "block";
+    });
 
     const license = script.getAttribute("data-license");
     const widgetUrl = `http://localhost:3000?license=${license}`;
@@ -47,28 +57,24 @@
     iframe.src = widgetUrl;
 
     document.body.appendChild(widget);
-    widget.style.display = "none";
   };
 
   const showWidget = () => {
-    const widget = document.getElementById("widget");
-    const iframe = document.getElementById("widget-iframe");
     widget.style.display = "block";
     iframe.style.display = "block";
   };
 
   const hideWidget = () => {
-    const widget = document.getElementById("widget");
-    const iframe = document.getElementById("widget-iframe");
     widget.style.display = "none";
     iframe.style.display = "none";
   };
+
   const isWidgetVisible = () => {
-    const widget = document.getElementById("widget");
     return widget.style.display === "block";
   };
+
   const toggleWidget = () => {
-    const btnImg = document.querySelector(".widget-controller-btn img");
+    const btnImg = button.querySelector("img");
     if (!isWidgetVisible()) {
       btnImg.src = CloseIcon;
       showWidget();
@@ -79,9 +85,10 @@
   };
 
   const createButton = () => {
-    const button = document.createElement("button");
+    button = document.createElement("button");
     button.className = "widget-controller-btn";
     button.addEventListener("click", toggleWidget);
+    button.style.display = "none";
 
     const img = document.createElement("img");
     img.width = "40px";
@@ -92,7 +99,6 @@
     document.body.appendChild(button);
   };
 
-  // Load CSS dynamically
   const createStyle = () => {
     const style = document.createElement("style");
     style.innerHTML = `
@@ -100,8 +106,8 @@
         position: fixed;
         bottom: 15px;
         right: 15px;
-        width: 159.5778350830078px;
-        height: 76.93931579589844px;
+        width: 90px;
+        height: 40px;
         border-radius: 66.9656982421875px;
         background-color: #ffffff;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.18) !important;
@@ -110,10 +116,26 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 0 20px;
       }
     
       .widget-controller-btn img {
-        width: 60px;
+        height: 20px;
+        width: 100%;
+      }
+
+      @media (max-width: 600px) {
+        .widget-controller-btn {
+          bottom: 5px;
+          right: 10px;
+        }
+        #neura-chat-widget{
+          right:0;
+          top:0;
+          left:0;
+          height: calc(100% - 50px) !important;
+ 
+        }
       }
     `;
 
