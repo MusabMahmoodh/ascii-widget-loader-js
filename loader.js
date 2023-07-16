@@ -1,10 +1,8 @@
 (() => {
   const script = document.currentScript;
 
-  const ChatIcon =
-    "C:/Users/musab/OneDrive/Desktop/projects/ascii/neura-chat/demo/example-neura-widget-loader/chat-float.svg";
-  const CloseIcon =
-    "C:/Users/musab/OneDrive/Desktop/projects/ascii/neura-chat/demo/example-neura-widget-loader/exit-float.svg";
+  const ChatIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1689488174/ascii/chat-float_eey6op.svg";
+  const CloseIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1689488174/ascii/exit-float_elviaf.svg";
 
   let widget;
   let iframe;
