@@ -1,0 +1,23 @@
+{
+  "name": "example-neura-widget-loader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "loader.js",
+  "scripts": {
+    "minify": "minify loader.js > loader.min.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MusabMahmoodh/ascii-widget-loader-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MusabMahmoodh/ascii-widget-loader-js/issues"
+  },
+  "homepage": "https://github.com/MusabMahmoodh/ascii-widget-loader-js#readme",
+  "dependencies": {
+    "minify": "^10.3.0"
+  }
+}
