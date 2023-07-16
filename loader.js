@@ -50,7 +50,7 @@
     });
 
     const license = script.getAttribute("data-license");
-    const widgetUrl = `https://64b38e933f626700087577b8--bright-tiramisu-c37a9c.netlify.app/?license=${license}`;
+    const widgetUrl = `https://bright-tiramisu-c37a9c.netlify.app/?license=${license}`;
 
     iframe.src = widgetUrl;
 
