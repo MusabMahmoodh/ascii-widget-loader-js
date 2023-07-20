@@ -13,11 +13,10 @@
     widget.id = "neura-chat-widget";
     widget.style.display = "none";
     widget.style.boxSizing = "border-box";
-    widget.style.width = "400px";
-    widget.style.maxWidth = "100%";
+    widget.style.width = "100%";
+    widget.style.maxWidth = "400px";
     widget.style.height = "calc(100% - 145px)";
     widget.style.maxHeight = "600px";
-    widget.style.overflow = "hidden";
     widget.style.position = "fixed";
     widget.style.bottom = "70px";
     widget.style.right = "15px";
@@ -132,7 +131,9 @@
           right:0;
           top:0;
           left:0;
-          height: calc(100% - 50px) !important;
+          height: calc(100vh - 50px) !important;
+          max-height: 100vh !important;
+          width: 100% !important;
  
         }
       }
