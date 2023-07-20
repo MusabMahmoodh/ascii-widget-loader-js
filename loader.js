@@ -16,7 +16,8 @@
     widget.style.width = "400px";
     widget.style.maxWidth = "100%";
     widget.style.height = "calc(100% - 145px)";
-    widget.style.maxHeight = "100%";
+    widget.style.maxHeight = "600px";
+    widget.style.overflow = "hidden";
     widget.style.position = "fixed";
     widget.style.bottom = "70px";
     widget.style.right = "15px";
