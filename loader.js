@@ -10,8 +10,8 @@
   let buttonChat;
   let voiceButton;
   // const widgetUrl = `https://bright-tiramisu-c37a9c.netlify.app/`;
-  const voiceWidgetUrl = `http://localhost:3000/?voiceOnly=1`;
-  const widgetUrl = `http://localhost:3000/`;
+  const voiceWidgetUrl = `https://bright-tiramisu-c37a9c.netlify.app?voiceOnly=1`;
+  const widgetUrl = `https://bright-tiramisu-c37a9c.netlify.app`;
 
   const loadWidget = () => {
     //for chat widget
