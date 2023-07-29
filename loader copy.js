@@ -8,107 +8,116 @@
   let iframe;
   let buttonChat;
   let voiceButton;
-  // const widgetUrl = `https://bright-tiramisu-c37a9c.netlify.app/`;
-  const voiceWidgetUrl = `http://localhost:3000/?voiceOnly=1`;
-  const widgetUrl = `http://localhost:3000/`;
+  const widgetUrl = `https://bright-tiramisu-c37a9c.netlify.app/`;
+  const voiceWidgetUrl = `https://bright-tiramisu-c37a9c.netlify.app/?voiceOnly=1`;
 
   const loadWidget = () => {
-    //for chat widget
     widget = document.createElement("div");
     widget.id = "neura-chat-widget";
+    widget.style.display = "none";
+    widget.style.boxSizing = "border-box";
+    widget.style.width = "100%";
+    widget.style.maxWidth = "400px";
+    widget.style.height = "calc(100% - 145px)";
+    widget.style.maxHeight = "600px";
+    widget.style.position = "fixed";
+    widget.style.bottom = "70px";
+    widget.style.right = "15px";
+    widget.style.padding = 0;
+    widget.style.zIndex = 9999;
+    widget.style.border = "1px solid #e6e6e6";
+    widget.style.borderRadius = "10px";
+    widget.style.boxShadow = "0 5px 40px rgba(0,0,0,.16)!important";
 
     iframe = document.createElement("iframe");
     iframe.id = "widget-iframe";
     iframe.allow = "microphone *"; // Allowing microphone access for the iframe
+    iframe.style.boxSizing = "border-box";
+    iframe.style.position = "absolute";
+    iframe.style.right = 0;
+    iframe.style.top = 0;
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    iframe.style.border = 0;
+    iframe.style.margin = 0;
+    iframe.style.padding = 0;
+    iframe.style.backgroundColor = "none";
+    iframe.style.display = "none";
+    iframe.style.borderRadius = "10px";
+    iframe.style.border = "1px solid #e6e6e6";
 
     widget.appendChild(iframe);
+
     iframe.addEventListener("load", () => {
       buttonChat.style.display = "block";
-    });
-    iframe.src = widgetUrl;
-    document.body.appendChild(widget);
-
-    //for voice widget
-    widgetVoice = document.createElement("div");
-    widgetVoice.id = "neura-chat-widget-voice";
-
-    iframeVoice = document.createElement("iframe");
-    iframeVoice.id = "widget-iframe-voice";
-    iframeVoice.allow = "microphone *";
-
-    widgetVoice.appendChild(iframeVoice);
-
-    iframeVoice.addEventListener("load", () => {
       voiceButton.style.display = "block";
     });
 
-    iframeVoice.src = voiceWidgetUrl;
-    document.body.appendChild(widgetVoice);
+    iframe.src = widgetUrl;
+
+    document.body.appendChild(widget);
   };
 
   const showWidget = () => {
-    const btnVoice = voiceButton.querySelector("img");
-    btnVoice.src = ChatIcon;
-    const btnChatImg = buttonChat.querySelector("img");
-    btnChatImg.src = CloseIcon;
-    widgetVoice.style.display = "none";
-    iframeVoice.style.display = "none";
     widget.style.display = "block";
     iframe.style.display = "block";
   };
 
   const hideWidget = () => {
-    const btnVoice = voiceButton.querySelector("img");
-    btnVoice.src = ChatIcon;
-    const btnChatImg = buttonChat.querySelector("img");
-    btnChatImg.src = ChatIcon;
     widget.style.display = "none";
     iframe.style.display = "none";
-  };
-
-  const showVoiceWidget = () => {
-    const btnVoice = voiceButton.querySelector("img");
-    btnVoice.src = CloseIcon;
-    const btnChatImg = buttonChat.querySelector("img");
-    btnChatImg.src = ChatIcon;
-    widget.style.display = "none";
-    iframe.style.display = "none";
-    widgetVoice.style.display = "block";
-    iframeVoice.style.display = "block";
-  };
-
-  const hideVoiceWidget = () => {
-    const btnVoice = voiceButton.querySelector("img");
-    btnVoice.src = ChatIcon;
-    const btnChatImg = buttonChat.querySelector("img");
-    btnChatImg.src = ChatIcon;
-    widgetVoice.style.display = "none";
-    iframeVoice.style.display = "none";
   };
 
   const isWidgetVisible = () => {
     return widget.style.display === "block";
   };
-  const isVoiceWidgetVisible = () => {
-    return widgetVoice.style.display === "block";
-  };
 
   const toggleChatWidget = () => {
-    hideVoiceWidget();
+    const btnImg = buttonChat.querySelector("img");
+    widgetNormalScreen();
     if (!isWidgetVisible()) {
+      btnImg.src = CloseIcon;
       showWidget();
     } else {
+      btnImg.src = ChatIcon;
       hideWidget();
     }
   };
 
   const toggleVoiceWidget = () => {
-    hideWidget();
-    if (!isVoiceWidgetVisible()) {
-      showVoiceWidget();
+    const btnImg = voiceButton.querySelector("img");
+    widgetFullScreen();
+    if (!isWidgetVisible()) {
+      btnImg.src = CloseIcon;
+      showWidget();
     } else {
-      hideVoiceWidget();
+      btnImg.src = ChatIcon;
+      hideWidget();
     }
+  };
+  const widgetFullScreen = () => {
+    iframe.src = voiceWidgetUrl;
+    widget.style.width = "100%";
+    widget.style.height = "100vh";
+    widget.style.maxWidth = "100%";
+    widget.style.bottom = "0";
+    widget.style.right = "0";
+    widget.style.borderRadius = "0";
+    widget.style.boxShadow = "none";
+    widget.style.zIndex = 9999;
+  };
+
+  const widgetNormalScreen = () => {
+    iframe.src = widgetUrl;
+    widget.style.width = "100%";
+    widget.style.maxWidth = "400px";
+    widget.style.height = "calc(100% - 145px)";
+    widget.style.maxHeight = "600px";
+    widget.style.bottom = "70px";
+    widget.style.right = "15px";
+    widget.style.borderRadius = "10px";
+    widget.style.boxShadow = "0 5px 40px rgba(0,0,0,.16)!important";
+    widget.style.zIndex = 9988;
   };
 
   const createButton = () => {
@@ -130,6 +139,7 @@
     voiceButton = document.createElement("button");
     voiceButton.className = "voice-controller-btn";
     voiceButton.addEventListener("click", toggleVoiceWidget);
+    voiceButton.addEventListener("click", toggleVoiceWidget);
     voiceButton.style.display = "none";
 
     const img = document.createElement("img");
@@ -144,64 +154,6 @@
   const createStyle = () => {
     const style = document.createElement("style");
     style.innerHTML = `
-      #neura-chat-widget {
-        display: none;
-        box-sizing: border-box;
-        width: 100%;
-        max-width: 400px;
-        height: calc(100% - 145px);
-        max-height: 600px;
-        position: fixed;
-        bottom: 70px;
-        right: 15px;
-        padding: 0;
-        z-index: 9999;
-        border: 1px solid #e6e6e6;
-        border-radius: 10px;
-        box-shadow: 0 5px 40px rgba(0, 0, 0, .16) !important;
-      }  
-      #widget-iframe{
-        box-sizing: border-box;
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-        margin: 0;
-        padding: 0;
-        background-color: none;
-        display: none;
-        border-radius: 10px;
-        border: 1px solid #e6e6e6;
-      }
-
-      #neura-chat-widget-voice {
-        display: none;
-        box-sizing: border-box;
-        width: 100%;
-        max-width: 100vw;
-        height:100vh;
-        max-height: 100vh;
-        position: fixed;
-        bottom:0;
-        right: 0;
-        padding: 0;
-        z-index: 9988;
-      }  
-      #widget-iframe-voice{
-        box-sizing: border-box;
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-        margin: 0;
-        padding: 0;
-        background-color: none;
-        display: none;
-      }
       .widget-controller-btn {
         position: fixed;
         bottom: 15px;
