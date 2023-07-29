@@ -1,7 +1,8 @@
 (() => {
   const script = document.currentScript;
 
-  const ChatIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1689488174/ascii/chat-float_eey6op.svg";
+  const ChatIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1690624483/ascii/chat-btn.svg";
+  const MicIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1690624483/ascii/mic-btn.svg";
   const CloseIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1689488174/ascii/exit-float_elviaf.svg";
 
   let widget;
@@ -48,7 +49,7 @@
 
   const showWidget = () => {
     const btnVoice = voiceButton.querySelector("img");
-    btnVoice.src = ChatIcon;
+    btnVoice.src = MicIcon;
     const btnChatImg = buttonChat.querySelector("img");
     btnChatImg.src = CloseIcon;
     widgetVoice.style.display = "none";
@@ -59,7 +60,7 @@
 
   const hideWidget = () => {
     const btnVoice = voiceButton.querySelector("img");
-    btnVoice.src = ChatIcon;
+    btnVoice.src = MicIcon;
     const btnChatImg = buttonChat.querySelector("img");
     btnChatImg.src = ChatIcon;
     widget.style.display = "none";
@@ -79,7 +80,7 @@
 
   const hideVoiceWidget = () => {
     const btnVoice = voiceButton.querySelector("img");
-    btnVoice.src = ChatIcon;
+    btnVoice.src = MicIcon;
     const btnChatImg = buttonChat.querySelector("img");
     btnChatImg.src = ChatIcon;
     widgetVoice.style.display = "none";
@@ -134,7 +135,7 @@
 
     const img = document.createElement("img");
     img.width = "40px";
-    img.src = ChatIcon;
+    img.src = MicIcon;
 
     voiceButton.appendChild(img);
 
@@ -206,17 +207,18 @@
         position: fixed;
         bottom: 15px;
         right: 15px;
-        width: 90px;
+        width: 50px;
         height: 40px;
-        border-radius: 66.9656982421875px;
+        border-radius: 0 60px 60px 0;
         background-color: #ffffff;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.18) !important;
+        border:none;
         z-index: 2147483640;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0 20px;
+        padding: 0 8px;
       }
     
       .widget-controller-btn img {
@@ -227,18 +229,19 @@
       .voice-controller-btn {
         position: fixed;
         bottom: 15px;
-        right: 105px;
-        width: 90px;
+        right: 65px;
+        width: 50px;
         height: 40px;
-        border-radius: 66.9656982421875px;
+        border-radius: 60px 0 0 60px;
         background-color: #ffffff;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.18) !important;
+        border:none;
         z-index: 9999;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0 20px;
+        padding: 0 8px;
       }
     
       .voice-controller-btn img {
