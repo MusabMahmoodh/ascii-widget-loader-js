@@ -9,9 +9,9 @@
   let iframe;
   let buttonChat;
   let voiceButton;
-  // const widgetUrl = `https://bright-tiramisu-c37a9c.netlify.app/`;
-  const voiceWidgetUrl = `https://bright-tiramisu-c37a9c.netlify.app?voiceOnly=1`;
-  const widgetUrl = `https://bright-tiramisu-c37a9c.netlify.app`;
+  const client = script.getAttribute("data-client");
+  const voiceWidgetUrl = `https://bright-tiramisu-c37a9c.netlify.app?voiceOnly=1&client=${client}`;
+  const widgetUrl = `https://bright-tiramisu-c37a9c.netlify.app?client=${client}`;
 
   const loadWidget = () => {
     //for chat widget

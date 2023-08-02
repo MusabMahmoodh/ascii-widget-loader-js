@@ -4,7 +4,7 @@
   "description": "",
   "main": "loader.js",
   "scripts": {
-    "minify": "minify loader.js > widget-loader-with-voice.min.js",
+    "minify": "minify loader.js > widget-loader-with-client-select.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
