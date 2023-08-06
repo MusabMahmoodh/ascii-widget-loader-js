@@ -123,8 +123,6 @@
     img.src = ChatIcon;
 
     buttonChat.appendChild(img);
-
-    document.body.appendChild(buttonChat);
   };
 
   const createVoiceButton = () => {
@@ -138,8 +136,17 @@
     img.src = MicIcon;
 
     voiceButton.appendChild(img);
+  };
 
-    document.body.appendChild(voiceButton);
+  const createButtonContainer = () => {
+    const buttonContainer = document.createElement("div");
+    buttonContainer.className = "widget-controller-container";
+    createVoiceButton();
+    createButton();
+    buttonContainer.appendChild(voiceButton);
+    buttonContainer.appendChild(buttonChat);
+
+    document.body.appendChild(buttonContainer);
   };
 
   const createStyle = () => {
@@ -203,17 +210,25 @@
         background-color: none;
         display: none;
       }
-      .widget-controller-btn {
+      .widget-controller-container{
         position: fixed;
         bottom: 15px;
         right: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+      .widget-controller-btn {
+       
         width: 50px;
         height: 40px;
         border-radius: 0 60px 60px 0;
         background-color: #ffffff;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.18) !important;
         border:none;
-        z-index: 2147483640;
+       
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -227,16 +242,13 @@
       }
 
       .voice-controller-btn {
-        position: fixed;
-        bottom: 15px;
-        right: 65px;
         width: 50px;
         height: 40px;
         border-radius: 60px 0 0 60px;
         background-color: #ffffff;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.18) !important;
         border:none;
-        z-index: 9999;
+
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -278,8 +290,7 @@
     document.addEventListener("readystatechange", () => {
       if (document.readyState === "complete") {
         loadWidget();
-        createButton();
-        createVoiceButton();
+        createButtonContainer();
         createStyle();
       }
     });
