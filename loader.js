@@ -3,7 +3,8 @@
 
   const ChatIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1690624483/ascii/chat-btn.svg";
   const MicIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1690624483/ascii/mic-btn.svg";
-  const CloseIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1689488174/ascii/exit-float_elviaf.svg";
+  const CloseIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1692190299/ascii/icons8-close-64_zs2oy1.png";
+  const BotIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1692189693/ascii/icons8-chatbot-94_uykweg.png";
 
   let widget;
   let iframe;
@@ -51,10 +52,8 @@
   const showWidget = () => {
     const btnMain = mainButton.querySelector("img");
     btnMain.src = CloseIcon;
-    const btnVoice = voiceButton.querySelector("img");
-    btnVoice.src = MicIcon;
-    const btnChatImg = buttonChat.querySelector("img");
-    btnChatImg.src = CloseIcon;
+    btnMain.style.height = "50px";
+
     widgetVoice.style.display = "none";
     iframeVoice.style.display = "none";
     widget.style.display = "block";
@@ -76,6 +75,7 @@
   const showVoiceWidget = () => {
     const btnMain = mainButton.querySelector("img");
     btnMain.src = CloseIcon;
+    btnMain.style.height = "50px";
     widget.style.display = "none";
     iframe.style.display = "none";
     widgetVoice.style.display = "block";
@@ -151,13 +151,13 @@
       hideVoiceWidget();
       // change main button icon
       const btnMain = mainButton.querySelector("img");
-      btnMain.src = ChatIcon;
-
+      btnMain.src = BotIcon;
+      btnMain.style.height = "70px";
       buttonChat.style.display = "none";
       voiceButton.style.display = "none";
     } else {
-      buttonChat.style.display = "block";
-      voiceButton.style.display = "block";
+      // show buttons for 1 second
+      // set;
     }
   };
 
@@ -169,7 +169,7 @@
 
     const img = document.createElement("img");
     img.width = "40px";
-    img.src = ChatIcon;
+    img.src = BotIcon;
     mainButton.addEventListener("mouseover", () => {
       if (isWidgetVisible() || isVoiceWidgetVisible()) {
         // img.src = CloseIcon;
@@ -177,6 +177,14 @@
         buttonChat.style.display = "block";
         voiceButton.style.display = "block";
       }
+    });
+
+    // hide two buttons after 1 second of mouse leave
+    mainButton.addEventListener("mouseleave", () => {
+      setTimeout(() => {
+        buttonChat.style.display = "none";
+        voiceButton.style.display = "none";
+      }, 1000);
     });
 
     mainButton.appendChild(img);
@@ -308,10 +316,10 @@
       }
 
       .main-controller-btn{
-        width: 50px;
-        height: 50px;
-        border-radius: 60px;
-        background-color: #ffffff;
+        // width: 50px;
+        // height: 50px;
+        // border-radius: 50%;
+        background-color: transparent;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.18) !important;
         border:none;
 
@@ -321,8 +329,10 @@
         justify-content: center;
         padding: 0 8px;
       }
+ 
+
       .main-controller-btn img {
-        height: 20px;
+        height: 80px;
         width: 100%;
       }
       @media (max-width: 600px) {
@@ -339,7 +349,7 @@
           width: 100% !important;
  
         }
-      }
+      }s
     `;
 
     document.head.appendChild(style);
