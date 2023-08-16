@@ -4,7 +4,8 @@
   const ChatIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1690624483/ascii/chat-btn.svg";
   const MicIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1690624483/ascii/mic-btn.svg";
   const CloseIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1692190299/ascii/icons8-close-64_zs2oy1.png";
-  const BotIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1692189693/ascii/icons8-chatbot-94_uykweg.png";
+  const BotIcon =
+    "https://res.cloudinary.com/musabcloud/image/upload/v1692204433/ascii/animation_lldyfuo5_small_qb8o4x.gif";
 
   let widget;
   let iframe;
@@ -334,6 +335,7 @@
       .main-controller-btn img {
         height: 80px;
         width: 100%;
+        border-radius: 50%;
       }
       @media (max-width: 600px) {
         .widget-controller-btn {
