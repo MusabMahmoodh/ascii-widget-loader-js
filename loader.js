@@ -320,7 +320,7 @@
         // height: 50px;
         // border-radius: 50%;
         background-color: transparent;
-        box-shadow: 0 0 3px rgba(0, 0, 0, 0.18) !important;
+        // box-shadow: 0 0 3px rgba(0, 0, 0, 0.18) !important;
         border:none;
 
         cursor: pointer;
