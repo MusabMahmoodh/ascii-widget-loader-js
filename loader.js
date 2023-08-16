@@ -9,6 +9,7 @@
   let iframe;
   let buttonChat;
   let voiceButton;
+  let mainButton;
   const client = script.getAttribute("data-client");
   const voiceWidgetUrl = `https://bright-tiramisu-c37a9c.netlify.app?voiceOnly=1&client=${client}`;
   const widgetUrl = `https://bright-tiramisu-c37a9c.netlify.app?client=${client}`;
@@ -24,7 +25,7 @@
 
     widget.appendChild(iframe);
     iframe.addEventListener("load", () => {
-      buttonChat.style.display = "block";
+      mainButton.style.display = "block";
     });
     iframe.src = widgetUrl;
     document.body.appendChild(widget);
@@ -40,7 +41,7 @@
     widgetVoice.appendChild(iframeVoice);
 
     iframeVoice.addEventListener("load", () => {
-      voiceButton.style.display = "block";
+      mainButton.style.display = "block";
     });
 
     iframeVoice.src = voiceWidgetUrl;
@@ -48,6 +49,8 @@
   };
 
   const showWidget = () => {
+    const btnMain = mainButton.querySelector("img");
+    btnMain.src = CloseIcon;
     const btnVoice = voiceButton.querySelector("img");
     btnVoice.src = MicIcon;
     const btnChatImg = buttonChat.querySelector("img");
@@ -56,6 +59,9 @@
     iframeVoice.style.display = "none";
     widget.style.display = "block";
     iframe.style.display = "block";
+    // hide two buttons
+    buttonChat.style.display = "none";
+    voiceButton.style.display = "none";
   };
 
   const hideWidget = () => {
@@ -68,14 +74,15 @@
   };
 
   const showVoiceWidget = () => {
-    const btnVoice = voiceButton.querySelector("img");
-    btnVoice.src = CloseIcon;
-    const btnChatImg = buttonChat.querySelector("img");
-    btnChatImg.src = ChatIcon;
+    const btnMain = mainButton.querySelector("img");
+    btnMain.src = CloseIcon;
     widget.style.display = "none";
     iframe.style.display = "none";
     widgetVoice.style.display = "block";
     iframeVoice.style.display = "block";
+    // hide two buttons
+    buttonChat.style.display = "none";
+    voiceButton.style.display = "none";
   };
 
   const hideVoiceWidget = () => {
@@ -138,13 +145,52 @@
     voiceButton.appendChild(img);
   };
 
+  const toggleMainButton = () => {
+    if (isWidgetVisible() || isVoiceWidgetVisible()) {
+      hideWidget();
+      hideVoiceWidget();
+      // change main button icon
+      const btnMain = mainButton.querySelector("img");
+      btnMain.src = ChatIcon;
+
+      buttonChat.style.display = "none";
+      voiceButton.style.display = "none";
+    } else {
+      buttonChat.style.display = "block";
+      voiceButton.style.display = "block";
+    }
+  };
+
+  const createMainButton = () => {
+    mainButton = document.createElement("button");
+    mainButton.className = "main-controller-btn";
+    mainButton.addEventListener("click", toggleMainButton);
+    mainButton.style.display = "none";
+
+    const img = document.createElement("img");
+    img.width = "40px";
+    img.src = ChatIcon;
+    mainButton.addEventListener("mouseover", () => {
+      if (isWidgetVisible() || isVoiceWidgetVisible()) {
+        // img.src = CloseIcon;
+      } else {
+        buttonChat.style.display = "block";
+        voiceButton.style.display = "block";
+      }
+    });
+
+    mainButton.appendChild(img);
+  };
+
   const createButtonContainer = () => {
     const buttonContainer = document.createElement("div");
     buttonContainer.className = "widget-controller-container";
+    createMainButton();
     createVoiceButton();
     createButton();
     buttonContainer.appendChild(voiceButton);
     buttonContainer.appendChild(buttonChat);
+    buttonContainer.appendChild(mainButton);
 
     document.body.appendChild(buttonContainer);
   };
@@ -261,6 +307,24 @@
         width: 100%;
       }
 
+      .main-controller-btn{
+        width: 50px;
+        height: 50px;
+        border-radius: 60px;
+        background-color: #ffffff;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.18) !important;
+        border:none;
+
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 8px;
+      }
+      .main-controller-btn img {
+        height: 20px;
+        width: 100%;
+      }
       @media (max-width: 600px) {
         .widget-controller-btn {
           bottom: 5px;
