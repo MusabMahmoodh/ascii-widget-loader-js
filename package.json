@@ -4,7 +4,7 @@
   "description": "",
   "main": "loader.js",
   "scripts": {
-    "minify": "minify loader.js > neura-widget-loader-v3.min.js",
+    "minify": "minify loaderv1.js > neura-widget-loader-v3.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
