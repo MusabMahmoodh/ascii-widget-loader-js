@@ -13,8 +13,8 @@
   let voiceButton;
   let mainButton;
   const client = script.getAttribute("data-client");
-  const voiceWidgetUrl = `https://bright-tiramisu-c37a9c.netlify.app?voiceOnly=1&client=${client}`;
-  const widgetUrl = `https://bright-tiramisu-c37a9c.netlify.app?client=${client}`;
+  const voiceWidgetUrl = `https://neura-chat-widget.vercel.app/?voiceOnly=1&client=${client}`;
+  const widgetUrl = `https://neura-chat-widget.vercel.app/?client=${client}`;
 
   const loadWidget = () => {
     //for chat widget
@@ -53,7 +53,6 @@
   const showWidget = () => {
     const btnMain = mainButton.querySelector("img");
     btnMain.src = CloseIcon;
-    btnMain.style.height = "50px";
 
     widgetVoice.style.display = "none";
     iframeVoice.style.display = "none";
@@ -317,9 +316,6 @@
       }
 
       .main-controller-btn{
-        // width: 50px;
-        // height: 50px;
-        // border-radius: 50%;
         background-color: transparent;
         // box-shadow: 0 0 3px rgba(0, 0, 0, 0.18) !important;
         border:none;
@@ -333,8 +329,8 @@
  
 
       .main-controller-btn img {
-        height: 80px;
-        width: 100%;
+        height: 80px !important;
+        width: 80px !important;
         border-radius: 50%;
       }
       @media (max-width: 600px) {
