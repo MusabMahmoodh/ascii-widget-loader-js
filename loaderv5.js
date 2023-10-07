@@ -3,7 +3,8 @@
 
   const ChatIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1690624483/ascii/chat-btn.svg";
   const MicIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1690624483/ascii/mic-btn.svg";
-  const CloseIcon = "https://res.cloudinary.com/musabcloud/image/upload/v1692190299/ascii/icons8-close-64_zs2oy1.png";
+  const CloseIcon =
+    "https://res.cloudinary.com/musabcloud/image/upload/v1696654353/ascii/cancel-close-svgrepo-com_x1o3q0.svg";
   const BotIcon =
     "https://res.cloudinary.com/musabcloud/image/upload/v1692204433/ascii/animation_lldyfuo5_small_qb8o4x.gif";
 
@@ -53,7 +54,8 @@
   const showWidget = () => {
     const btnMain = mainButton.querySelector("img");
     btnMain.src = CloseIcon;
-
+    btnMain.style.height = "40px";
+    btnMain.style.width = "40px";
     widgetVoice.style.display = "none";
     iframeVoice.style.display = "none";
     widget.style.display = "block";
@@ -75,7 +77,6 @@
   const showVoiceWidget = () => {
     const btnMain = mainButton.querySelector("img");
     btnMain.src = CloseIcon;
-    btnMain.style.height = "50px";
     widget.style.display = "none";
     iframe.style.display = "none";
     widgetVoice.style.display = "block";
@@ -152,7 +153,8 @@
       // change main button icon
       const btnMain = mainButton.querySelector("img");
       btnMain.src = BotIcon;
-      btnMain.style.height = "70px";
+      btnMain.style.height = "80px";
+      btnMain.style.width = "80px";
       buttonChat.style.display = "none";
       voiceButton.style.display = "none";
     } else {
@@ -210,9 +212,9 @@
         display: none;
         box-sizing: border-box;
         width: 100%;
-        max-width: 400px;
-        height: calc(100% - 145px);
-        max-height: 600px;
+        max-width: 450px;
+        height: calc(100% - 120px);
+        max-height: 720px;
         position: fixed;
         bottom: 70px;
         right: 15px;
@@ -329,8 +331,8 @@
  
 
       .main-controller-btn img {
-        height: 80px !important;
-        width: 80px !important;
+        height: 80px ;
+        width: 80px ;
         border-radius: 50%;
       }
       @media (max-width: 600px) {
