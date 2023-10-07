@@ -205,6 +205,14 @@
     document.body.appendChild(buttonContainer);
   };
 
+  function resetHeight() {
+    // reset the body height to that of the inner browser
+    document.body.style.height = window.innerHeight + "px";
+  }
+  // reset the height whenever the window's resized
+  window.addEventListener("resize", resetHeight);
+  // called to initially set the height.
+
   const createStyle = () => {
     const style = document.createElement("style");
     style.innerHTML = `
@@ -352,7 +360,7 @@
           right:0;
           top:0;
           left:0;
-          height:  calc(100vh - 40px) ;
+          height:  calc(100vh - 40px - 50px) ;
 
           width: 100% !important;
  
@@ -368,6 +376,7 @@
     createButton();
     createVoiceButton();
     createStyle();
+    resetHeight();
   } else {
     document.addEventListener("readystatechange", () => {
       if (document.readyState === "complete") {
