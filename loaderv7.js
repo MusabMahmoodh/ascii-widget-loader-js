@@ -56,7 +56,8 @@
     btnMain.src = CloseIcon;
     btnMain.style.height = "40px";
     btnMain.style.width = "40px";
-    btnMain.classList.toggle("main-controller-btn--mobile");
+    const ctnContainer = document.querySelector(".widget-controller-container");
+    ctnContainer.classList.toggle("main-controller-btn--mobile");
     widgetVoice.style.display = "none";
     iframeVoice.style.display = "none";
     widget.style.display = "block";
@@ -154,7 +155,8 @@
       // change main button icon
       const btnMain = mainButton.querySelector("img");
       btnMain.src = BotIcon;
-      btnMain.classList.toggle("main-controller-btn--mobile");
+      const ctnContainer = document.querySelector(".widget-controller-container");
+      ctnContainer.classList.toggle("main-controller-btn--mobile");
       btnMain.style.height = "80px";
       btnMain.style.width = "80px";
       buttonChat.style.display = "none";
@@ -212,7 +214,6 @@
         width: 100%;
         max-width: 450px;
         height: calc(100% - 120px);
-        max-height: 720px;
         position: fixed;
         bottom: 70px;
         right: 15px;
@@ -336,8 +337,11 @@
       @media (max-width: 600px) {
         .main-controller-btn--mobile {
           position: fixed;
-          bottom: 72px;
-          right: calc(50% - 20px);
+          bottom: 2px;
+          right: 0;
+          left: 0;
+          background: rgba(255, 255, 255, 0.8);
+          z-index: 9999;
         }
 
         .widget-controller-btn {
@@ -348,7 +352,7 @@
           right:0;
           top:0;
           left:0;
-          height: 100vh !important;
+          height:  calc(100vh - 40px) ;
 
           width: 100% !important;
  
