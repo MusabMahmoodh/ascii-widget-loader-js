@@ -56,6 +56,7 @@
     btnMain.src = CloseIcon;
     btnMain.style.height = "40px";
     btnMain.style.width = "40px";
+    btnMain.classList.toggle("main-controller-btn--mobile");
     widgetVoice.style.display = "none";
     iframeVoice.style.display = "none";
     widget.style.display = "block";
@@ -153,6 +154,7 @@
       // change main button icon
       const btnMain = mainButton.querySelector("img");
       btnMain.src = BotIcon;
+      btnMain.classList.toggle("main-controller-btn--mobile");
       btnMain.style.height = "80px";
       btnMain.style.width = "80px";
       buttonChat.style.display = "none";
@@ -172,17 +174,13 @@
     const img = document.createElement("img");
     img.width = "40px";
     img.src = BotIcon;
-    mainButton.addEventListener("mouseover", () => {
+    mainButton.addEventListener("click", () => {
       if (isWidgetVisible() || isVoiceWidgetVisible()) {
         // img.src = CloseIcon;
       } else {
         buttonChat.style.display = "block";
         voiceButton.style.display = "block";
       }
-    });
-
-    // hide two buttons after 1 second of mouse leave
-    mainButton.addEventListener("mouseleave", () => {
       setTimeout(() => {
         buttonChat.style.display = "none";
         voiceButton.style.display = "none";
@@ -327,15 +325,21 @@
         align-items: center;
         justify-content: center;
         padding: 0 8px;
+        animation: blinking 1s infinite;
       }
- 
-
       .main-controller-btn img {
         height: 80px ;
         width: 80px ;
         border-radius: 50%;
       }
+
       @media (max-width: 600px) {
+        .main-controller-btn--mobile {
+          position: fixed;
+          bottom: 72px;
+          right: calc(50% - 20px);
+        }
+
         .widget-controller-btn {
           bottom: 5px;
           right: 10px;
@@ -344,8 +348,8 @@
           right:0;
           top:0;
           left:0;
-          height: calc(100vh - 50px) !important;
-          max-height: 100vh !important;
+          height: 100vh !important;
+
           width: 100% !important;
  
         }
