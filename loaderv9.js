@@ -348,7 +348,6 @@
           bottom: 2px;
           right: 0;
           left: 0;
-          background: rgba(255, 255, 255, 0.8);
           z-index: 9999;
         }
 
@@ -365,7 +364,7 @@
           width: 100% !important;
  
         }
-      }s
+      }
     `;
 
     document.head.appendChild(style);
