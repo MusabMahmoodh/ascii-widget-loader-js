@@ -186,7 +186,7 @@
       setTimeout(() => {
         buttonChat.style.display = "none";
         voiceButton.style.display = "none";
-      }, 1000);
+      }, 2500);
     });
 
     mainButton.appendChild(img);
