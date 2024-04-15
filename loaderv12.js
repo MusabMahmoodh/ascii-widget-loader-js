@@ -14,8 +14,8 @@
   let voiceButton;
   let mainButton;
   const client = script.getAttribute("data-client");
-  const voiceWidgetUrl = `https://neura-chat-widget.vercel.app//?avatarChat=1&client=${client}`;
-  const widgetUrl = `https://neura-chat-widget.vercel.app//?client=${client}`;
+  const voiceWidgetUrl = `https://neura-chat-widget.vercel.app/?avatarChat=1&client=${client}`;
+  const widgetUrl = `https://neura-chat-widget.vercel.app/?client=${client}`;
 
   const loadWidget = () => {
     //for chat widget
